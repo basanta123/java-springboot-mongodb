@@ -1,8 +1,8 @@
-version: '3.1'
+version: "3.1"
 
 services:
   springboot:
-    image: dockerhandson/spring-boot-mongo:latest
+    image: basantaolive/spring-boot-mongo:latest
     restart: always
     container_name: springboot
     ports:
@@ -10,31 +10,26 @@ services:
     working_dir: /opt/app
     depends_on:
       - mongo
-    deploy:
-      replicas: 2
-      update_config:
-        parallelism: 1
-        delay: 20s
-      restart_policy:
-        condition: on-failure   
+    #deploy:
+    #replicas: 2
+    #update_config:
+    #parallelism: 1
+    #delay: 20s
+    #restart_policy:
+    #condition: on-failure
 
   mongo:
     image: mongo
     container_name: springboot-mongo
-#    ports:  # for demo/debug purpose only
-#      - 27018:27017
+    #    ports:  # for demo/debug purpose only
+    #      - 27018:27017
     volumes:
       - data:/data/db
       - data-bkp:/data/bkp
     restart: always
-    
+
 volumes:
   data:
-    #external: true
+  #external: true
   data-bkp:
     #external: true
-    
-networks:
-  default:
-    external:
-      name: customoverlay

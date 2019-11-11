@@ -1,3 +1,5 @@
+FROM alpine:3.7
+
 FROM openjdk:8-alpine
 
 # Required for starting application up.
